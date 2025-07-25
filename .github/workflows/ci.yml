@@ -90,3 +90,9 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository_owner || 'username' }}/mlops-course-final-project:latest
 
+      - name: 🛠️ Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/abdelgukhari/mlops-course-final-project:latest
