@@ -1,4 +1,3 @@
-
 import pytest
 from src.data_loader import load_data
 
@@ -6,7 +5,7 @@ def test_load_data_shape():
     """
     Проверяет, что после загрузки данные не пустые и содержат нужные столбцы.
     """
-    df = load_data("data/nyc-taxi-sample.csv")
+    df = load_data("data/uber.csv")
 
     # Проверка, что данные не пустые
     assert not df.empty, "Данные пустые!"
