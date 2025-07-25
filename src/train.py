@@ -1,11 +1,9 @@
-
+import os
+import joblib
 import pandas as pd
-import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
-import joblib
-import os
 
 # Загрузка и обработка данных
 DATA_PATH = "data/uber.csv"
@@ -19,15 +17,19 @@ df = df.dropna()
 df = df[(df["fare_amount"] > 0) & (df["passenger_count"] > 0)]
 
 # Выбор признаков и целевой переменной
-features = ["pickup_longitude", "pickup_latitude", "dropoff_longitude", 
-            "dropoff_latitude", "passenger_count", "hour", "day"]
+features = [
+    "pickup_longitude", "pickup_latitude", "dropoff_longitude",
+    "dropoff_latitude", "passenger_count", "hour", "day"
+]
 target = "fare_amount"
 
 X = df[features]
 y = df[target]
 
 # Разделение на обучающую и тестовую выборки
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
 # Обучение модели линейной регрессии
 model = LinearRegression()

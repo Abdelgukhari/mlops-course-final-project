@@ -1,5 +1,6 @@
 from src.data_loader import load_data
 
+
 def test_load_data_shape():
     """
     Проверяет, что после загрузки данные не пустые и содержат нужные столбцы.
@@ -13,7 +14,11 @@ def test_load_data_shape():
     assert not y_test.empty, "Целевая переменная пуста!"
 
     # Проверка наличия основных колонок в X
-    expected_columns = ["pickup_longitude", "pickup_latitude",
-                        "dropoff_longitude", "dropoff_latitude", "passenger_count"]
+    expected_columns = [
+        "pickup_longitude", "pickup_latitude",
+        "dropoff_longitude", "dropoff_latitude", "passenger_count"
+    ]
     for col in expected_columns:
-        assert col in X_train.columns, f"Колонка '{col}' отсутствует в X_train!"
+        assert col in X_train.columns, (
+            f"Колонка '{col}' отсутствует в X_train!"
+        )
