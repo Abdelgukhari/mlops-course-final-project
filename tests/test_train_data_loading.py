@@ -1,4 +1,4 @@
-from src.data_loader import load_sample_data
+from src.data_loader import load_data
 
 # Тестовая копия ID файла на Google Drive (тот же, что и в train.py)
 GOOGLE_DRIVE_FILE_ID = '1HoJhzQAmUzBCgZrDtnNQlT5ogE1bMoue'
@@ -8,7 +8,7 @@ CSV_URL = (
 
 
 def test_data_loading_from_google_drive():
-    X_train, X_test, y_train, y_test = load_sample_data(CSV_URL)
+    X_train, X_test, y_train, y_test = load_data(CSV_URL)
 
     # Проверка, что данные загружены и не пусты
     assert X_train.shape[0] > 0, "Тренировочная выборка пуста"
