@@ -1,12 +1,20 @@
+import pandas as pd
 import joblib
-from src.data_loader import load_data
 
 # Загрузка модели
 model = joblib.load("models/model.joblib")
 
 # Загрузка новых данных
 inference_data_path = "data/uber.csv"
-df = load_data(inference_data_path)
+df = pd.read_csv(inference_data_path)
+
+# Предобработка даты и времени
+df["pickup_datetime"] = pd.to_datetime(df["pickup_datetime"])
+df["hour"] = df["pickup_datetime"].dt.hour
+df["day"] = df["pickup_datetime"].dt.dayofweek
+
+# Удаление пропущенных значений
+df = df.dropna()
 
 # Выбор признаков
 features = [
@@ -26,7 +34,4 @@ df[["pickup_datetime", "predicted_fare"]].to_csv(
     "inference_results.csv", index=False
 )
 
-print(
-    "Предсказания завершены. "
-    "Результаты сохранены в 'inference_results.csv'"
-)
+print("✅ تم الانتهاء من التنبؤ. النتائج محفوظة في 'inference_results.csv'")
